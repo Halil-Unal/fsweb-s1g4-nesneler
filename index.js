@@ -15,10 +15,16 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(isim, fiyat, kategori) {
+	return {
+		isim: isim, 
+		fiyat: fiyat, 
+		kategori: kategori
+		
+	};
 }
-
+console.log(MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
+console.log(MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar"));
 
 
 /*  Görev 1b (otomatik test yok): 
@@ -50,8 +56,24 @@ const burger = {
 	isim: "Burger", 
 	fiyat: 18, 
 	kategori: "Öğle Yemeği", 
+	indirim: function(indirimUygulanacakMüsteriTipi)
+	{
+		if((indirimUygulanacakMüsteriTipi=== "öğretmen") || (indirimUygulanacakMüsteriTipi=== "öğrenci" ))
+		return this.fiyat*0.75;
+		else
+		return this.fiyat*0,9; 
+		
 
-}
+
+		} 
+		
+	} 
+	console.log(burger.indirim("öğretmen"));
+  
+   
+
+
+
 
 
 
@@ -72,14 +94,15 @@ const degerlendirmeler = [
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
 
-
+console.log(degerlendirmeler[degerlendirmeler.findIndex(x=> x.isim === "Ahmet")]);
 
 /*  Görev 4 (ototest yok):  
 	Reyna'nın geribildirimi girilmemiş! Aşağıdakileri uygulayın: (fonksiyona gerek yok) 
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
-
+degerlendirmeler[degerlendirmeler.findIndex(x=> x.isim === "Reyna")].geribildirim="bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım";
+console.log(degerlendirmeler);
 
 
 /*  Görev 5: 
@@ -94,11 +117,18 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
-}
+function DegerledirmeEkle(degerlendirmelerDizisi,müsteriIsmi,müsteriPuanı,müsteriGeribildirimi){
 
+	degerlendirmelerDizisi.push({
+       isim : müsteriIsmi ,
+	   puan : müsteriPuanı ,
+	   geribildirim : müsteriGeribildirimi
+
+
+	})
+	return degerlendirmelerDizisi;
+}
+ console.log(DegerledirmeEkle(degerlendirmeler, 'Hurşut', 2, 'Boktan yemekler!'));
 
 
 /*  Görev 6: 
@@ -112,10 +142,18 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(newArray,kisi) 
+
+{
+
+	const elifdata = newArray[kisi];
+	return elifdata.isim + " isimli kisi " + elifdata.puan + " puan verdi ve şunları yazdı " + elifdata.geribildirim
+
+
+	
 
 }
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,3))
 
 
 
@@ -132,11 +170,14 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(parametre) {
+
+    const degisken = parametre[parametre.length-2];
+	return degisken.isim + " isimli kisi " + degisken.puan + " puan verdive şunları yazdı " + degisken.geribildirim
+	
 } 
 
-
+console.log(SonDegerlendirmeyiAl(degerlendirmeler));
 
 /////////////// BONUS  GÖRVLER////////////////////
 
